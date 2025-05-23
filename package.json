@@ -37,16 +37,16 @@
     "trailingComma": "none",
     "arrowParens": "avoid"
   },
-  "name": "react-toastify-v2-v2",
+  "name": "react-toastify-v2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ty-sir/react-toastify-v2-v2.git"
+    "url": "git+https://github.com/ty-sir/react-toastify-v2.git"
   },
   "author": "Ty-Sir <tylersiravo@gmail.com> (https://tylersiravo.com)",
   "bugs": {
-    "url": "https://github.com/ty-sir/react-toastify-v2-v2/issues"
+    "url": "https://github.com/ty-sir/react-toastify-v2/issues"
   },
-  "homepage": "https://github.com/ty-sir/react-toastify-v2-v2#readme",
+  "homepage": "https://github.com/ty-sir/react-toastify-v2#readme",
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
     "@cypress/code-coverage": "^3.13.9",
