@@ -2,7 +2,7 @@
 
 **What is the current behavior?**
 
-**If the current behavior is a bug, please provide the steps to reproduce and if possible a minimal demo of the problem. Your bug will get fixed much faster if we can run your code and it doesn't have dependencies other than React. Paste the link to your [Stackblitz](https://stackblitz.com/edit/react-toastify-getting-started) example below:**
+**If the current behavior is a bug, please provide the steps to reproduce and if possible a minimal demo of the problem. Your bug will get fixed much faster if we can run your code and it doesn't have dependencies other than React. Paste the link to your [Stackblitz](https://stackblitz.com/edit/react-toastify-v2-getting-started) example below:**
 
 **What is the expected behavior?**
 

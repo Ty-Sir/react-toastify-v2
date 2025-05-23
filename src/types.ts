@@ -93,7 +93,7 @@ interface CommonOptions {
   hideProgressBar?: boolean;
 
   /**
-   * Pass a custom transition see https://fkhadra.github.io/react-toastify/custom-animation/
+   * Pass a custom transition see https://fkhadra.github.io/react-toastify-v2/custom-animation/
    */
   transition?: ToastTransition;
 
@@ -156,7 +156,7 @@ interface CommonOptions {
    * When set to `true` the built-in progress bar won't be rendered at all. Autoclose delay won't have any effect as well
    * This is only used when you want to replace the progress bar with your own.
    *
-   * See https://stackblitz.com/edit/react-toastify-custom-progress-bar?file=src%2FApp.tsx for an example.
+   * See https://stackblitz.com/edit/react-toastify-v2-custom-progress-bar?file=src%2FApp.tsx for an example.
    */
   customProgressBar?: boolean;
 }

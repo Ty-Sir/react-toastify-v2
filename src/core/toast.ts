@@ -246,7 +246,7 @@ toast.clearWaitingQueue = clearWaitingQueue as ClearWaitingQueueFunc;
 toast.isActive = isToastActive;
 
 /**
- * Update a toast, see https://fkhadra.github.io/react-toastify/update-toast/ for more
+ * Update a toast, see https://fkhadra.github.io/react-toastify-v2/update-toast/ for more
  *
  * Example:
  * ```

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { toast, ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify-v2';
 import { NotificationCenterItem, useNotificationCenter, UseNotificationCenterParams } from './useNotificationCenter';
 
 function TestComponent(props: UseNotificationCenterParams) {

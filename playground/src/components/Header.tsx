@@ -2,11 +2,7 @@ import * as React from 'react';
 
 export const Header = () => (
   <header>
-    <a
-      href="https://github.com/fkhadra/react-toastify"
-      className="github-corner"
-      aria-label="View source on Github"
-    >
+    <a href="https://github.com/fkhadra/react-toastify-v2" className="github-corner" aria-label="View source on Github">
       <svg
         width="80"
         height="80"
@@ -39,16 +35,13 @@ export const Header = () => (
     <h1>Welcome to React-toastify</h1>
     <h5>React notification made easy !</h5>
     <div>
-      <a className="btn" href="https://fkhadra.github.io/react-toastify">
+      <a className="btn" href="https://fkhadra.github.io/react-toastify-v2">
         <span role="img" aria-label="link to github">
           📖
         </span>{' '}
         Documentation
       </a>
-      <a
-        className="btn"
-        href="https://github.com/fkhadra/react-toastify/stargazers"
-      >
+      <a className="btn" href="https://github.com/fkhadra/react-toastify-v2/stargazers">
         <span role="img" aria-label="link to github">
           ⭐️
         </span>{' '}

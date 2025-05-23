@@ -1,6 +1,6 @@
 **Before submitting a pull request,** please make sure the following is done:
 
-1. Fork [the repository](https://github.com/fkhadra/react-toastify) and create your branch from `main`.
+1. Fork [the repository](https://github.com/fkhadra/react-toastify-v2) and create your branch from `main`.
 2. Run `pnpm i` in the repository root.
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`pnpm test`).
@@ -12,4 +12,4 @@
 
 For new features, please make sure that there is an issue related to it.
 
-**Learn more about contributing [here](https://github.com/fkhadra/react-toastify/blob/master/CONTRIBUTING.md)**
+**Learn more about contributing [here](https://github.com/fkhadra/react-toastify-v2/blob/master/CONTRIBUTING.md)**

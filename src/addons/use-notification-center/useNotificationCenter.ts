@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { toast, ToastItem, Id } from 'react-toastify';
+import { Id, ToastItem } from '../../types';
+import { toast } from '../../core';
+// import { toast, ToastItem, Id } from 'react-toastify-v2';
 
 type Optional<T, K extends keyof T> = Pick<Partial<T>, K> & Omit<T, K>;
 
