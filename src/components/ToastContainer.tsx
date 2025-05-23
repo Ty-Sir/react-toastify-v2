@@ -138,7 +138,10 @@ export function ToastContainer(props: ToastContainerProps) {
       ref={containerRef}
       className={Default.CSS_NAMESPACE as string}
       id={containerId as string}
-      onMouseEnter={() => {
+      onMouseEnter={e => {
+        if (underToastChildrenRef?.current && underToastChildrenRef.current.contains(e.target as Node)) {
+          return;
+        }
         if (stacked) {
           setIsCollapsed(false);
           toast.pause();
