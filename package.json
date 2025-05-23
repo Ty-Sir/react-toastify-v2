@@ -37,16 +37,16 @@
     "trailingComma": "none",
     "arrowParens": "avoid"
   },
-  "name": "react-toastify",
+  "name": "react-toastify-v2",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fkhadra/react-toastify.git"
+    "url": "git+https://github.com/ty-sir/react-toastify-v2.git"
   },
-  "author": "Fadi Khadra <fdkhadra@gmail.com> (https://fkhadra.github.io)",
+  "author": "Ty-Sir <tylersiravo@gmail.com> (https://tylersiravo.com)",
   "bugs": {
-    "url": "https://github.com/fkhadra/react-toastify/issues"
+    "url": "https://github.com/ty-sir/react-toastify-v2/issues"
   },
-  "homepage": "https://github.com/fkhadra/react-toastify#readme",
+  "homepage": "https://github.com/ty-sir/react-toastify-v2#readme",
   "devDependencies": {
     "@4tw/cypress-drag-drop": "^2.2.5",
     "@cypress/code-coverage": "^3.13.9",
@@ -103,5 +103,6 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
-  }
+  },
+  "packageManager": "pnpm@9.15.9+sha512.68046141893c66fad01c079231128e9afb89ef87e2691d69e4d40eee228988295fd4682181bae55b58418c3a253bde65a505ec7c5f9403ece5cc3cd37dcf2531"
 }

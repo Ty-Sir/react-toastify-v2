@@ -278,6 +278,11 @@ export interface ToastContainerProps extends CommonOptions, Pick<HTMLAttributes<
    * ```
    */
   hotKeys?: (e: KeyboardEvent) => boolean;
+
+  /**
+   * Children to be rendered under the toasts
+   */
+  underToastChildren?: React.ReactNode;
 }
 
 export interface ToastTransitionProps {

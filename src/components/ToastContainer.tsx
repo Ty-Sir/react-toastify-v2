@@ -1,5 +1,5 @@
 import cx from 'clsx';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 
 import { toast } from '../core';
 import { useToastContainer } from '../hooks';
@@ -30,9 +30,11 @@ export function ToastContainer(props: ToastContainerProps) {
     ...defaultProps,
     ...props
   };
+  const underToastChildren = props.underToastChildren || null;
   const stacked = props.stacked;
   const [collapsed, setIsCollapsed] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
+  const underToastChildrenRef = useRef<HTMLDivElement>(null);
   const { getToastToRender, isToastActive, count } = useToastContainer(containerProps);
   const { className, style, rtl, containerId, hotKeys } = containerProps;
 
@@ -61,6 +63,9 @@ export function ToastContainer(props: ToastContainerProps) {
   useIsomorphicLayoutEffect(() => {
     if (stacked) {
       const nodes = containerRef.current!.querySelectorAll('[data-in="true"]');
+      const underToastChildren = underToastChildrenRef?.current;
+      const heightOffset = underToastChildren?.getBoundingClientRect().height || 0;
+
       const gap = 12;
       const isTop = containerProps.position?.includes('top');
       let usedHeight = 0;
@@ -76,7 +81,10 @@ export function ToastContainer(props: ToastContainerProps) {
 
           if (!node.dataset.pos) node.dataset.pos = isTop ? 'top' : 'bot';
 
-          const y = usedHeight * (collapsed ? 0.2 : 1) + (collapsed ? 0 : gap * i);
+          let y = usedHeight * (collapsed ? 0.2 : 1) + (collapsed ? 0 : gap * i);
+          if (!isTop && nodes.length > 1) {
+            y += heightOffset;
+          }
 
           node.style.setProperty('--y', `${isTop ? y : y * -1}px`);
           node.style.setProperty('--g', `${gap}`);
@@ -85,6 +93,22 @@ export function ToastContainer(props: ToastContainerProps) {
           usedHeight += node.offsetHeight;
           prevS += 0.025;
         });
+
+      if (underToastChildren && isTop && collapsed) {
+        const nodeOffset = usedHeight * 0.2;
+
+        const firstNodeheight = nodes?.[0]?.getBoundingClientRect()?.height || 0;
+        underToastChildren.style.marginTop = `${nodeOffset + firstNodeheight}px`;
+      }
+
+      if (underToastChildren && isTop && !collapsed) {
+        const heightOfAllNodes = Array.from(nodes).reduce((acc, n) => {
+          const node = n as HTMLElement;
+          const nodeHeight = node.offsetHeight;
+          return acc + nodeHeight + gap;
+        }, 0);
+        underToastChildren.style.marginTop = `${heightOfAllNodes}px`;
+      }
     }
   }, [collapsed, count, stacked]);
 
@@ -132,27 +156,42 @@ export function ToastContainer(props: ToastContainerProps) {
           : { ...style };
 
         return (
-          <div
-            tabIndex={-1}
-            className={getClassName(position)}
-            data-stacked={stacked}
-            style={containerStyle}
-            key={`c-${position}`}
-          >
-            {toastList.map(({ content, props: toastProps }) => {
-              return (
-                <Toast
-                  {...toastProps}
-                  stacked={stacked}
-                  collapseAll={collapseAll}
-                  isIn={isToastActive(toastProps.toastId, toastProps.containerId)}
-                  key={`t-${toastProps.key}`}
-                >
-                  {content}
-                </Toast>
-              );
-            })}
-          </div>
+          <Fragment key={`f-${position}`}>
+            <div
+              tabIndex={-1}
+              className={getClassName(position)}
+              data-stacked={stacked}
+              style={containerStyle}
+              key={`c-${position}`}
+            >
+              {toastList.map(({ content, props: toastProps }) => {
+                return (
+                  <Toast
+                    {...toastProps}
+                    stacked={stacked}
+                    collapseAll={collapseAll}
+                    isIn={isToastActive(toastProps.toastId, toastProps.containerId)}
+                    key={`t-${toastProps.key}`}
+                  >
+                    {content}
+                  </Toast>
+                );
+              })}
+
+              <div
+                ref={underToastChildrenRef}
+                id="underToastChildren"
+                className={`${Default.CSS_NAMESPACE}__under-toast-children`}
+                style={{
+                  width: '100%',
+                  opacity: toastList.length > 1 ? 1 : 0,
+                  transition: 'all 0.3s ease-in-out'
+                }}
+              >
+                {underToastChildren}
+              </div>
+            </div>
+          </Fragment>
         );
       })}
     </section>

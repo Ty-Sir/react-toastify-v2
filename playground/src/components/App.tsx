@@ -28,7 +28,7 @@ class App extends React.Component {
   static getDefaultState() {
     return {
       ...defaultProps,
-      transition: 'bounce',
+      transition: 'slide',
       type: 'default',
       progress: '',
       disableAutoClose: false,
@@ -47,7 +47,12 @@ class App extends React.Component {
   showToast = () => {
     this.toastId =
       this.state.type === 'default'
-        ? toast('🦄 Wow so easy !', { progress: this.state.progress })
+        ? toast(
+            '🦄 Wow so easy  asdfasdf asdfasdf asdfasdf asdfasdf asdfasdf asdf asdf asdfasdf asdfasd asdf asdf asdf asdf asdf asdf asdf asdf!',
+            {
+              progress: this.state.progress
+            }
+          )
         : toast[this.state.type]('🚀 Wow so easy !', {
             progress: this.state.progress
           });
@@ -252,6 +257,24 @@ class App extends React.Component {
           {...this.state}
           transition={transitions[this.state.transition]}
           autoClose={this.state.disableAutoClose ? false : this.state.autoClose}
+          // autoClose={false}
+          stacked
+          // position="bottom-center"
+          underToastChildren={
+            <div
+              style={{
+                padding: '10px',
+                background: 'red',
+                color: 'green',
+                width: '100%',
+                height: '100px',
+                margin: '0 auto'
+              }}
+            >
+              <h3>Under Toast Children</h3>
+              <p>I'm a custom component under the toast</p>
+            </div>
+          }
         />
         <ToastContainer containerId="xxx" position="top-left" autoClose={false} theme="dark" limit={3} />
         <ToastContainer limit={3} containerId="yyy" autoClose={false} position="top-right" />
