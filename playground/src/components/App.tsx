@@ -256,8 +256,8 @@ class App extends React.Component {
         <ToastContainer
           {...this.state}
           transition={transitions[this.state.transition]}
-          autoClose={this.state.disableAutoClose ? false : this.state.autoClose}
-          // autoClose={false}
+          // autoClose={this.state.disableAutoClose ? false : this.state.autoClose}
+          autoClose={false}
           stacked
           // position="bottom-center"
           underToastChildren={
@@ -265,7 +265,7 @@ class App extends React.Component {
               style={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '12px',
+                gap: '8px',
                 width: '100%'
               }}
             >

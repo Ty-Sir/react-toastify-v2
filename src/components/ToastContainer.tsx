@@ -37,10 +37,12 @@ export function ToastContainer(props: ToastContainerProps) {
   const underToastChildrenRef = useRef<HTMLDivElement>(null);
   const { getToastToRender, isToastActive, count } = useToastContainer(containerProps);
   const { className, style, rtl, containerId, hotKeys } = containerProps;
+  const [isToastChildrenClicked, setIsToastChildrenClicked] = useState(false);
 
   function getClassName(position: ToastPosition) {
     const defaultClassName = cx(
       `${Default.CSS_NAMESPACE}__toast-container`,
+      `${Default.CSS_NAMESPACE}__hide-scrollbar`,
       `${Default.CSS_NAMESPACE}__toast-container--${position}`,
       { [`${Default.CSS_NAMESPACE}__toast-container--rtl`]: rtl }
     );
@@ -62,6 +64,7 @@ export function ToastContainer(props: ToastContainerProps) {
 
   useIsomorphicLayoutEffect(() => {
     if (stacked) {
+      const toastContainer = containerRef.current!.querySelectorAll('.Toastify__toast-container')?.[0] as HTMLElement;
       const nodes = containerRef.current!.querySelectorAll('[data-in="true"]');
       const underToastChildren = underToastChildrenRef?.current;
       const heightOffset = underToastChildren?.getBoundingClientRect().height || 0;
@@ -70,6 +73,11 @@ export function ToastContainer(props: ToastContainerProps) {
       const isTop = containerProps.position?.includes('top');
       let usedHeight = 0;
       let prevS = 0;
+
+      if (heightOffset && toastContainer && isTop) {
+        toastContainer.style.maxHeight = `96vh`;
+        toastContainer.style.overflow = `hidden auto`;
+      }
 
       Array.from(nodes)
         .reverse()
@@ -110,7 +118,7 @@ export function ToastContainer(props: ToastContainerProps) {
         underToastChildren.style.marginTop = `${heightOfAllNodes}px`;
       }
     }
-  }, [collapsed, count, stacked]);
+  }, [collapsed, count, stacked, props?.position]);
 
   useEffect(() => {
     function focusFirst(e: KeyboardEvent) {
@@ -132,6 +140,13 @@ export function ToastContainer(props: ToastContainerProps) {
       document.removeEventListener('keydown', focusFirst);
     };
   }, [hotKeys]);
+
+  const handleHideToastChildren = () => {
+    setIsToastChildrenClicked(true);
+    setTimeout(() => {
+      setIsToastChildrenClicked(false);
+    }, 1000); // Reset after 1 second
+  };
 
   return (
     <section
@@ -182,12 +197,13 @@ export function ToastContainer(props: ToastContainerProps) {
               })}
 
               <div
+                onClick={handleHideToastChildren}
                 ref={underToastChildrenRef}
                 id="underToastChildren"
                 className={`${Default.CSS_NAMESPACE}__under-toast-children`}
                 style={{
                   width: '100%',
-                  opacity: toastList.length > 1 ? 1 : 0,
+                  opacity: isToastChildrenClicked ? 0 : toastList.length > 1 ? 1 : 0,
                   transition: 'all 0.3s ease-in-out'
                 }}
               >
