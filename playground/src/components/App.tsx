@@ -263,16 +263,16 @@ class App extends React.Component {
           underToastChildren={
             <div
               style={{
-                padding: '10px',
-                background: 'red',
-                color: 'green',
-                width: '100%',
-                height: '100px',
-                margin: '0 auto'
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '12px',
+                width: '100%'
               }}
             >
-              <h3>Under Toast Children</h3>
-              <p>I'm a custom component under the toast</p>
+              <button onClick={this.clearAll} style={{ width: '100%', padding: '5px' }}>
+                Dismiss All
+              </button>
+              <button style={{ width: '100%', padding: '5px' }}>Go To Inbox</button>
             </div>
           }
         />
